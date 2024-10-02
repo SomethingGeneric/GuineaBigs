@@ -57,13 +57,15 @@ public class GuineaBigs implements ModInitializer {
 	// Start methods
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
 		GuineaItems.initialize();
 		LOGGER.info("Items initialized");
+
 		GuineaBlocks.initialize();
 		LOGGER.info("Blocks initialized");
+
 		FabricDefaultAttributeRegistry.register(GUINEA_PIG, GuineaPigEntity.createGuineaPigAttributes());
 		LOGGER.info("The boys have been added");
+
 		addEntityToBiomes();
 		LOGGER.info("Set up entity spawn rules");
 	}

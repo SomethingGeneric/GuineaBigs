@@ -4,5 +4,6 @@
   "item.guineabigs.guinea_pellet": "Guinea Pellet",
   "itemGroup.guineabigs": "GuineaBigs",
   "block.guineabigs.timothy_hay_bale": "Timothy Hay Bale",
-  "item.guineabigs.guinea_pig_spawn_egg": "Guinea Pig Spawn Egg"
+  "item.guineabigs.guinea_pig_spawn_egg": "Guinea Pig Spawn Egg",
+  "block.guineabigs.guinea_pellet_block": "Guinea Pellet Block"
 }

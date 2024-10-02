@@ -18,6 +18,13 @@ public class GuineaBlocks {
             true
     );
 
+    public static final Block GUINEA_PELLET = register(
+            new GuineaPelletBlock(Block.Settings.copy(Blocks.LILY_PAD).noCollision().strength(0.1F)),
+            "guinea_pellet_block",
+            true
+    );
+
+
     // METHODS (vvv)
     public static Block register(Block block, String name, boolean shouldRegisterItem) {
         // Register the block and its item.
