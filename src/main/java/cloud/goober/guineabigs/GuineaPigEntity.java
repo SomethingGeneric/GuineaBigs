@@ -18,7 +18,7 @@ public class GuineaPigEntity extends AnimalEntity {
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return false;
+        return stack.getItem() == GuineaItems.TIMOTHY_HAY;
     }
 
     @Override
