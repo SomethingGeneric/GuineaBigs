@@ -35,5 +35,6 @@ public class GuineaBigs implements ModInitializer {
 		GuineaBlocks.initialize();
 		LOGGER.info("Blocks initialized");
 		FabricDefaultAttributeRegistry.register(GUINEA_PIG, GuineaPigEntity.createGuineaPigAttributes());
+		LOGGER.info("The boys have been added");
 	}
 }

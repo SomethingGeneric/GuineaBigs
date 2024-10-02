@@ -4,10 +4,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -31,6 +28,14 @@ public class GuineaItems {
             "guinea_pellet"
     );
 
+    public static final Item GUINEA_PIG_SPAWN_EGG = new SpawnEggItem(
+            GuineaBigs.GUINEA_PIG,
+            0x964B00,
+            0x00FF00,
+            new Item.Settings()
+    );
+
+    // Creative tab menu definition
     public static final RegistryKey<ItemGroup> ITEM_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(GuineaBigs.MOD_ID, "item_group"));
     public static final ItemGroup MY_ITEM_GROUP = FabricItemGroup.builder()
             .icon(() -> new ItemStack(GuineaItems.TIMOTHY_HAY))
@@ -52,6 +57,9 @@ public class GuineaItems {
     }
 
     public static void initialize() {
+        // Spawn egg for Guinea Pig
+        Registry.register(Registries.ITEM, Identifier.of(GuineaBigs.MOD_ID, "guinea_pig_spawn_egg"), GUINEA_PIG_SPAWN_EGG);
+
         // Register the group.
         Registry.register(Registries.ITEM_GROUP, ITEM_KEY, MY_ITEM_GROUP);
 
@@ -60,6 +68,7 @@ public class GuineaItems {
             itemGroup.add(GuineaItems.FOOD_PELLET);
             itemGroup.add(GuineaItems.TIMOTHY_HAY);
             itemGroup.add(GuineaItems.GUINEA_PELLET);
+            itemGroup.add(GuineaItems.GUINEA_PIG_SPAWN_EGG);
             // blocks are added automagically
         });
 
