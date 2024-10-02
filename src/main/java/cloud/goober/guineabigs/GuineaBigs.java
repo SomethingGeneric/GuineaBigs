@@ -16,5 +16,7 @@ public class GuineaBigs implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 		GuineaItems.initialize();
 		LOGGER.info("Items initialized");
+		GuineaBlocks.initialize();
+		LOGGER.info("Blocks initialized");
 	}
 }

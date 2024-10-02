@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "guineabigs:block/timothy_hay_bale"
+  }
+}
