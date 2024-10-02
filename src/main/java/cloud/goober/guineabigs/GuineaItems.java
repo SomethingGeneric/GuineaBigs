@@ -2,6 +2,8 @@ package cloud.goober.guineabigs;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
@@ -22,6 +24,11 @@ public class GuineaItems {
     public static final Item TIMOTHY_HAY = register(
             new Item(new Item.Settings()),
             "timothy_hay"
+    );
+
+    public static final Item GUINEA_PELLET = register(
+            new Item(new Item.Settings()),
+            "guinea_pellet"
     );
 
     public static final RegistryKey<ItemGroup> ITEM_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(GuineaBigs.MOD_ID, "item_group"));
@@ -52,7 +59,17 @@ public class GuineaItems {
         ItemGroupEvents.modifyEntriesEvent(ITEM_KEY).register(itemGroup -> {
             itemGroup.add(GuineaItems.FOOD_PELLET);
             itemGroup.add(GuineaItems.TIMOTHY_HAY);
+            itemGroup.add(GuineaItems.GUINEA_PELLET);
+            // blocks are added automagically
         });
+
+        // Compostable items
+        CompostingChanceRegistry.INSTANCE.add(GuineaItems.GUINEA_PELLET, 0.1f); // 10% chance
+
+        // Add to Flammable block registry with a burn time of 30 seconds.
+        // Remember, Minecraft deals with logical based-time using ticks.
+        // 20 ticks = 1 second.
+        FuelRegistry.INSTANCE.add(GuineaItems.GUINEA_PELLET, 2 * 20);
     }
 
 }
