@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "cloud.goober.guineabigs.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"ExampleClientMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
