@@ -12,6 +12,7 @@ import net.minecraft.util.Identifier;
 public class GuineaBigsClient implements ClientModInitializer {
 	@Override
     public void onInitializeClient() {
+        // TODO: He shouldn't be a reskinned pig model lol
         EntityRendererRegistry.register(GuineaBigs.GUINEA_PIG, (EntityRendererFactory.Context context) ->
                 new MobEntityRenderer<GuineaPigEntity, PigEntityModel<GuineaPigEntity>>(
                         context,
@@ -26,7 +27,7 @@ public class GuineaBigsClient implements ClientModInitializer {
                     @Override
                     protected void scale(GuineaPigEntity entity, MatrixStack matrixStack, float f) {
                         // Scale the entity to half its size
-                        matrixStack.scale(0.5f, 0.5f, 0.5f);
+                        matrixStack.scale(0.25f, 0.5f, 0.25f);
                     }
                 }
         );
