@@ -1,10 +1,15 @@
 package cloud.goober.guineabigs;
 
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class GuineaItems {
@@ -13,6 +18,18 @@ public class GuineaItems {
             new Item(new Item.Settings()),
             "food_pellet"
     );
+
+    public static final Item TIMOTHY_HAY = register(
+            new Item(new Item.Settings()),
+            "timothy_hay"
+    );
+
+    public static final RegistryKey<ItemGroup> ITEM_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(GuineaBigs.MOD_ID, "item_group"));
+    public static final ItemGroup MY_ITEM_GROUP = FabricItemGroup.builder()
+            .icon(() -> new ItemStack(GuineaItems.TIMOTHY_HAY))
+            .displayName(Text.translatable("itemGroup.guineabigs"))
+            .build();
+
     // END STATIC FIELDS
 
     // START METHODS
@@ -28,10 +45,14 @@ public class GuineaItems {
     }
 
     public static void initialize() {
-        // Get the event for modifying entries in the ingredients group.
-        // And register an event handler that adds our suspicious item to the ingredients group.
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK)
-                .register((itemGroup) -> itemGroup.add(GuineaItems.FOOD_PELLET));
+        // Register the group.
+        Registry.register(Registries.ITEM_GROUP, ITEM_KEY, MY_ITEM_GROUP);
+
+        // Register items to the custom item group.
+        ItemGroupEvents.modifyEntriesEvent(ITEM_KEY).register(itemGroup -> {
+            itemGroup.add(GuineaItems.FOOD_PELLET);
+            itemGroup.add(GuineaItems.TIMOTHY_HAY);
+        });
     }
 
 }

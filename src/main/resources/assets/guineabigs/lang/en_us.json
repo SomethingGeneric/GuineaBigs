@@ -1,3 +1,5 @@
 {
-  "item.guineabigs.food_pellet": "Food Pellet"
+  "item.guineabigs.food_pellet": "Food Pellet",
+  "item.guineabigs.timothy_hay": "Timothy Hay",
+  "itemGroup.guineabigs": "GuineaBigs"
 }
