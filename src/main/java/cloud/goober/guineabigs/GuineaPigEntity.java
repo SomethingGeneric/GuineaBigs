@@ -28,7 +28,9 @@ public class GuineaPigEntity extends AnimalEntity {
         this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 0.85D)); // Slower wandering speed
         this.goalSelector.add(4, new PlaceBlockGoal(this));
-        this.goalSelector.add(5, new LookAtEntityGoal(this, net.minecraft.entity.player.PlayerEntity.class, 6.0F));
+        // TODO: This goal being enabled leads to cursed head movement values
+        // in ../client/GuineaModel
+        //this.goalSelector.add(5, new LookAtEntityGoal(this, net.minecraft.entity.player.PlayerEntity.class, 6.0F));
         this.goalSelector.add(6, new LookAroundGoal(this));
     }
 
