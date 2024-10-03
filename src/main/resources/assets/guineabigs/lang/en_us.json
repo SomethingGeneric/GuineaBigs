@@ -6,5 +6,6 @@
   "block.guineabigs.timothy_hay_bale": "Timothy Hay Bale",
   "item.guineabigs.guinea_pig_spawn_egg": "Guinea Pig Spawn Egg",
   "block.guineabigs.guinea_pellet_block": "Guinea Pellet Block",
-  "entity.guineabigs.guineapig": "Guinea Pig"
+  "entity.guineabigs.guineapig": "Guinea Pig",
+  "item.guineabigs.carbonite_ingot": "Carbonite Ingot"
 }
