@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ini",
+    "ini",
+    "iRi"
+  ],
+  "key": {
+    "i": {
+      "item": "guineabigs:carbonite_ingot"
+    },
+    "n": {
+      "item": "guineabigs:condensed_carbonite_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "id": "guineabigs:guinea_treadmill_block",
+    "count": 1
+  }
+}
