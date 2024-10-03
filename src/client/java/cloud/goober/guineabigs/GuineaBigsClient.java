@@ -24,7 +24,7 @@ public class GuineaBigsClient implements ClientModInitializer {
                 new MobEntityRenderer<GuineaPigEntity, GuineaModel>(
                         context,
                         new GuineaModel(context.getPart(GUINEA_MODEL_LAYER)),  // Use your custom model
-                        0.25f // Shadow radius (halved from 0.5f)
+                        0.125f // Shadow radius
                 ) {
                     @Override
                     public Identifier getTexture(GuineaPigEntity entity) {
