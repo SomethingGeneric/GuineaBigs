@@ -1,6 +1,11 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
-    "all": "guineabigs:block/guinea_treadmill_block"
+    "down": "guineabigs:block/guinea_treadmill_block",
+    "up": "guineabigs:block/guinea_treadmill_block_top",
+    "north": "guineabigs:block/guinea_treadmill_block",
+    "south": "guineabigs:block/guinea_treadmill_block",
+    "west": "guineabigs:block/guinea_treadmill_block",
+    "east": "guineabigs:block/guinea_treadmill_block"
   }
 }

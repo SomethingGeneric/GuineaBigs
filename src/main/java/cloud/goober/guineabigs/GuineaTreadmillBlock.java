@@ -35,7 +35,7 @@ public class GuineaTreadmillBlock extends Block {
                     GuineaBigs.LOGGER.info("Block state after update: " + world.getBlockState(pos).toString());
                     world.updateNeighborsAlways(pos, this);  // Update redstone neighbors
 
-                    world.scheduleBlockTick(pos, this, 20);
+                    world.scheduleBlockTick(pos, this, 45);
                 }
             }
         }
@@ -43,19 +43,7 @@ public class GuineaTreadmillBlock extends Block {
 
     @Override
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean notify) {
-        /* EMPTY since the tick event does this
-        if (!world.isClient) {
-            boolean hasGuineaPig = !world.getEntitiesByClass(Entity.class, state.getOutlineShape(world, pos).getBoundingBox().offset(pos), entity -> entity.getType() == GuineaBigs.GUINEA_PIG).isEmpty();
-
-            // Turn off redstone power if no guinea pig is present
-            if (!hasGuineaPig && state.get(POWERED)) {
-                GuineaBigs.LOGGER.info("Turning off power for block at " + pos.toString());
-                world.setBlockState(pos, state.with(POWERED, false), 3);
-                world.updateNeighborsAlways(pos, this);  // Update redstone neighbors
-                GuineaBigs.LOGGER.info("Block state after update: " + world.getBlockState(pos).toString());
-            }
-        }
-        */
+        /* EMPTY since the tick event does this */
     }
 
     @Override
@@ -67,7 +55,7 @@ public class GuineaTreadmillBlock extends Block {
             // Turn off redstone power if no guinea pig is present
             if (!hasGuineaPig && state.get(POWERED)) {
                 world.setBlockState(pos, state.with(POWERED, false), 3);
-                world.updateNeighborsAlways(pos, this);  // Update redstone neighbors
+                world.updateNeighborsAlways(pos, this);
             }
         }
     }
