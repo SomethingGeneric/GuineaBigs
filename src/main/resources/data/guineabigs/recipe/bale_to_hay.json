@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "guineabigs:timothy_hay_bale"
+    }
+  ],
+  "result": {
+    "id": "guineabigs:timothy_hay",
+    "count": 4
+  }
+}
