@@ -8,12 +8,16 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import net.minecraft.util.math.random.Random;
 
 public class GuineaPigEntity extends AnimalEntity {
+    private int textureVariant; // New field for texture variant
 
     public GuineaPigEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
+        this.textureVariant = Random.create().nextInt(2); // Randomly select a texture variant (0, 1)
     }
 
     @Override
@@ -29,9 +33,6 @@ public class GuineaPigEntity extends AnimalEntity {
         this.goalSelector.add(3, new SeekTreadmillGoal(this, 0.85D, 10, 800));
         this.goalSelector.add(4, new WanderAroundFarGoal(this, 0.85D)); // Slower wandering speed
         this.goalSelector.add(5, new PlaceBlockGoal(this));
-        // TODO: This goal being enabled leads to cursed head movement values
-        // in ../client/GuineaModel
-        //this.goalSelector.add(6, new LookAtEntityGoal(this, net.minecraft.entity.player.PlayerEntity.class, 6.0F));
         this.goalSelector.add(6, new LookAroundGoal(this));
     }
 
@@ -43,6 +44,21 @@ public class GuineaPigEntity extends AnimalEntity {
 
     @Override
     public GuineaPigEntity createChild(ServerWorld world, PassiveEntity entity) {
-        return GuineaBigs.GUINEA_PIG.create(world);
+        GuineaPigEntity child = GuineaBigs.GUINEA_PIG.create(world);
+        child.setTextureVariant(Random.create().nextInt(3)); // Randomly set the child’s texture variant
+        return child;
+    }
+
+    public int getTextureVariant() {
+        return textureVariant;
+    }
+
+    public void setTextureVariant(int textureVariant) {
+        this.textureVariant = textureVariant;
+    }
+
+    // Add a method to get the texture path based on the variant
+    public Identifier getTexture() {
+        return Identifier.of("guineabigs", "textures/entity/guinea_pig_" + textureVariant + ".png");
     }
 }

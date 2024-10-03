@@ -23,17 +23,17 @@ public class GuineaBigsClient implements ClientModInitializer {
         EntityRendererRegistry.register(GuineaBigs.GUINEA_PIG, (EntityRendererFactory.Context context) ->
                 new MobEntityRenderer<GuineaPigEntity, GuineaModel>(
                         context,
-                        new GuineaModel(context.getPart(GUINEA_MODEL_LAYER)),  // Use your custom model
+                        new GuineaModel(context.getPart(GUINEA_MODEL_LAYER)),
                         0.125f // Shadow radius
                 ) {
                     @Override
                     public Identifier getTexture(GuineaPigEntity entity) {
-                        return Identifier.of(GuineaBigs.MOD_ID, "textures/entity/guinea_pig.png"); // Update texture
+                        return entity.getTexture();
                     }
 
                     @Override
                     protected void scale(GuineaPigEntity entity, MatrixStack matrixStack, float f) {
-                        matrixStack.scale(0.5f, 0.5f, 0.5f); // Scale to fit your custom model
+                        matrixStack.scale(0.5f, 0.5f, 0.5f); // Scale to fit
                     }
                 }
         );

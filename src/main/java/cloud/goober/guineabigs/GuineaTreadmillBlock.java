@@ -2,6 +2,7 @@ package cloud.goober.guineabigs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.FurnaceBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -11,6 +12,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
+
+import java.util.List;
 
 public class GuineaTreadmillBlock extends Block {
 
@@ -27,12 +31,9 @@ public class GuineaTreadmillBlock extends Block {
 
         if (!world.isClient) {
             if (entity.getType() == GuineaBigs.GUINEA_PIG) {
-                //GuineaBigs.LOGGER.info("It's a Guinea pig!");
-                // Power the block if it's not powered already
                 if (!state.get(POWERED)) {
                     GuineaBigs.LOGGER.info("Attempting to power block at " + pos.toString());
                     world.setBlockState(pos, state.with(POWERED, true), 3);
-                    GuineaBigs.LOGGER.info("Block state after update: " + world.getBlockState(pos).toString());
                     world.updateNeighborsAlways(pos, this);  // Update redstone neighbors
 
                     world.scheduleBlockTick(pos, this, 45);
