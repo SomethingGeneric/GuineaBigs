@@ -24,6 +24,11 @@ public class GuineaBlocks {
             true
     );
 
+    public static final Block GUINEA_TREADMILL_BLOCK = register(
+            new GuineaTreadmillBlock(AbstractBlock.Settings.copy(Blocks.STONE)),
+            "guinea_treadmill_block",
+            true
+    );
 
     // METHODS (vvv)
     public static Block register(Block block, String name, boolean shouldRegisterItem) {
@@ -43,6 +48,7 @@ public class GuineaBlocks {
     public static void initialize() {
         ItemGroupEvents.modifyEntriesEvent(GuineaItems.ITEM_KEY).register((itemGroup) -> {
             itemGroup.add(GuineaBlocks.TIMOTHY_HAY_BALE.asItem());
+            itemGroup.add(GuineaBlocks.GUINEA_TREADMILL_BLOCK.asItem());
         });
     }
 

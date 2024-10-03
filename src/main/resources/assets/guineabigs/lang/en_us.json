@@ -7,5 +7,7 @@
   "item.guineabigs.guinea_pig_spawn_egg": "Guinea Pig Spawn Egg",
   "block.guineabigs.guinea_pellet_block": "Guinea Pellet Block",
   "entity.guineabigs.guineapig": "Guinea Pig",
-  "item.guineabigs.carbonite_ingot": "Carbonite Ingot"
+  "item.guineabigs.carbonite_ingot": "Carbonite Ingot",
+  "item.guineabigs.condensed_carbonite_ingot": "Condensed Carbonite Ingot",
+  "block.guineabigs.guinea_treadmill_block": "Guinea Pig Treadmill"
 }

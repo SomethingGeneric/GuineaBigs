@@ -30,6 +30,11 @@ public class GuineaItems {
             "carbonite_ingot"
     );
 
+    public static final Item CONDENSED_CARBONITE_INGOT = register(
+            new Item(new Item.Settings()),
+            "condensed_carbonite_ingot"
+    );
+
     public static final Item GUINEA_PIG_SPAWN_EGG = new SpawnEggItem(
             GuineaBigs.GUINEA_PIG,
             0x964B00,
@@ -74,6 +79,7 @@ public class GuineaItems {
             itemGroup.add(GuineaItems.GUINEA_PELLET);
             itemGroup.add(GuineaItems.GUINEA_PIG_SPAWN_EGG);
             itemGroup.add(GuineaItems.CARBONITE_INGOT);
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_INGOT);
             // blocks are added automagically
         });
 
