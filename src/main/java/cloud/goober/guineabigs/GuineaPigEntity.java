@@ -1,6 +1,7 @@
 package cloud.goober.guineabigs;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -38,13 +39,13 @@ public class GuineaPigEntity extends AnimalEntity {
 
     public static DefaultAttributeContainer.Builder createGuineaPigAttributes() {
         return AnimalEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0D)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2D);
+                .add(EntityAttributes.MAX_HEALTH, 10.0D)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.2D);
     }
 
     @Override
     public GuineaPigEntity createChild(ServerWorld world, PassiveEntity entity) {
-        GuineaPigEntity child = GuineaBigs.GUINEA_PIG.create(world);
+        GuineaPigEntity child = GuineaBigs.GUINEA_PIG.create(world, SpawnReason.BREEDING);
         child.setTextureVariant(Random.create().nextInt(3)); // Randomly set the child’s texture variant
         return child;
     }

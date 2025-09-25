@@ -28,12 +28,14 @@ public class GuineaBigs implements ModInitializer {
 	public static final String MOD_ID = "guineabigs";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+	public static final RegistryKey<EntityType<?>> GUINEA_PIG_KEY = RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(MOD_ID, "guineapig"));
+	
 	public static final EntityType<GuineaPigEntity> GUINEA_PIG = Registry.register(
 		Registries.ENTITY_TYPE,
-		Identifier.of(MOD_ID+":guineapig"),
+		GUINEA_PIG_KEY,
 		FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, GuineaPigEntity::new)
 				.dimensions(EntityDimensions.fixed(0.6f, 0.5f))
-				.build()
+				.build(GUINEA_PIG_KEY)
 	);
 
 	public static final ArrayList<RegistryKey<Biome>> VALID_BIOMES = new ArrayList<>(Arrays.asList(
@@ -49,7 +51,8 @@ public class GuineaBigs implements ModInitializer {
 						context -> {
 							context.getSpawnSettings().addSpawn(
 									SpawnGroup.CREATURE, // Choose the spawn group (CREATURE, MONSTER, etc.)
-									new SpawnSettings.SpawnEntry(GuineaBigs.GUINEA_PIG, 14, 5, 15) // Entity, weight, min group size, max group size
+									new SpawnSettings.SpawnEntry(GuineaBigs.GUINEA_PIG, 14, 5), // Entity, weight, min group size
+									15 // max group size
 							);
 						});
 	}
