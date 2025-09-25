@@ -51,8 +51,8 @@ public class GuineaBigs implements ModInitializer {
 						context -> {
 							context.getSpawnSettings().addSpawn(
 									SpawnGroup.CREATURE, // Choose the spawn group (CREATURE, MONSTER, etc.)
-									new SpawnSettings.SpawnEntry(GuineaBigs.GUINEA_PIG, 14, 5), // Entity, weight, min group size
-									15 // max group size
+									new SpawnSettings.SpawnEntry(GuineaBigs.GUINEA_PIG, 5, 2), // Entity, weight, min group size
+									4 // max group size
 							);
 						});
 	}

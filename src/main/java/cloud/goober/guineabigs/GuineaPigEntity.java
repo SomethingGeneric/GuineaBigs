@@ -18,7 +18,7 @@ public class GuineaPigEntity extends AnimalEntity {
 
     public GuineaPigEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
-        this.textureVariant = Random.create().nextInt(2); // Randomly select a texture variant (0, 1)
+        this.textureVariant = Random.create().nextInt(3); // Randomly select a texture variant (0, 1, 2)
     }
 
     @Override
