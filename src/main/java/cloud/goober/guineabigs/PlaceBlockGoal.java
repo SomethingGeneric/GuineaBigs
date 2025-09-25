@@ -34,6 +34,11 @@ public class PlaceBlockGoal extends Goal {
     }
 
     private void placeBlock() {
+        // Only place blocks on the server side
+        if (entity.getWorld().isClient()) {
+            return;
+        }
+        
         ServerWorld world = (ServerWorld) entity.getWorld();
         BlockPos pos = entity.getBlockPos().offset(entity.getHorizontalFacing());
 
