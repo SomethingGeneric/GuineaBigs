@@ -3,7 +3,7 @@ package cloud.goober.guineabigs;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -37,8 +37,6 @@ public class GuineaItems {
 
     public static final Item GUINEA_PIG_SPAWN_EGG = new SpawnEggItem(
             GuineaBigs.GUINEA_PIG,
-            0x964B00,
-            0x00FF00,
             new Item.Settings()
     );
 
@@ -89,7 +87,9 @@ public class GuineaItems {
         // Add to Flammable block registry with a burn time of 30 seconds.
         // Remember, Minecraft deals with logical based-time using ticks.
         // 20 ticks = 1 second.
-        FuelRegistry.INSTANCE.add(GuineaItems.GUINEA_PELLET, 2 * 20);
+        FuelRegistryEvents.BUILD.register((builder, context) -> {
+            builder.add(GuineaItems.GUINEA_PELLET, 2 * 20);
+        });
     }
 
 }

@@ -1,7 +1,7 @@
 package cloud.goober.guineabigs;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
@@ -16,29 +16,10 @@ public class GuineaBigsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        // Transparent poops
-        BlockRenderLayerMap.INSTANCE.putBlock(GuineaBlocks.GUINEA_PELLET, RenderLayer.getCutout());
-
         // Register entity renderer with custom model
-        EntityRendererRegistry.register(GuineaBigs.GUINEA_PIG, (EntityRendererFactory.Context context) ->
-                new MobEntityRenderer<GuineaPigEntity, GuineaModel>(
-                        context,
-                        new GuineaModel(context.getPart(GUINEA_MODEL_LAYER)),
-                        0.125f // Shadow radius
-                ) {
-                    @Override
-                    public Identifier getTexture(GuineaPigEntity entity) {
-                        return entity.getTexture();
-                    }
+        EntityRendererRegistry.register(GuineaBigs.GUINEA_PIG, GuineaPigRenderer::new);
 
-                    @Override
-                    protected void scale(GuineaPigEntity entity, MatrixStack matrixStack, float f) {
-                        matrixStack.scale(0.5f, 0.5f, 0.5f); // Scale to fit
-                    }
-                }
-        );
-
+        // Register the model layer
         EntityModelLayerRegistry.registerModelLayer(GuineaBigsClient.GUINEA_MODEL_LAYER, GuineaModel::getTexturedModelData);
-
     }
 }
