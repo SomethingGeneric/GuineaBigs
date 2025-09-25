@@ -53,9 +53,14 @@ public class GuineaModel extends EntityModel<GuineaPigRenderState> {
 		this.blleg.pitch = (float) (Math.cos(state.limbAngle * 1.0F + (float) Math.PI) * 1.0F * state.limbAmplitude);
 		this.brleg.pitch = (float) (Math.cos(state.limbAngle * 1.0F) * 1.0F * state.limbAmplitude);
 		
-		// Head movement based on state
-		this.neck.yaw = state.yawDegrees * 0.017453292F; // Convert degrees to radians
-		this.neck.pitch = state.pitchDegrees * 0.017453292F; // Convert degrees to radians
+		// Head movement - constrain to realistic ranges for a guinea pig
+		// Limit horizontal head rotation to +/- 75 degrees
+		float constrainedYaw = MathHelper.clamp(state.netHeadYaw, -75.0F, 75.0F);
+		// Limit vertical head rotation to -30 (down) to +45 (up) degrees  
+		float constrainedPitch = MathHelper.clamp(state.headPitch, -30.0F, 45.0F);
+		
+		this.neck.yaw = constrainedYaw * 0.017453292F; // Convert degrees to radians
+		this.neck.pitch = constrainedPitch * 0.017453292F; // Convert degrees to radians
 	}
 
 
