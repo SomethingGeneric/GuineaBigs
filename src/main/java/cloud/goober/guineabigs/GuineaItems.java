@@ -8,6 +8,7 @@ import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -32,39 +33,44 @@ public class GuineaItems {
         Identifier itemID = Identifier.of(GuineaBigs.MOD_ID, id);
 
         // Register the item.
-        Item registeredItem = Registry.register(Registries.ITEM, itemID, item);
-
-        // Return the registered item!
-        return registeredItem;
+        return Registry.register(Registries.ITEM, itemID, item);
     }
 
     public static void initialize() {
-        // Register all items
-        FOOD_PELLET = register("food_pellet", 
-                new Item(new Item.Settings())
+        // Create registry keys for each item first
+        RegistryKey<Item> foodPelletKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "food_pellet"));
+        RegistryKey<Item> timothyHayKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "timothy_hay"));
+        RegistryKey<Item> guineaPelletKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "guinea_pellet"));
+        RegistryKey<Item> carboniteIngotKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "carbonite_ingot"));
+        RegistryKey<Item> condensedCarboniteIngotKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_ingot"));
+        RegistryKey<Item> guineaPigSpawnEggKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "guinea_pig_spawn_egg"));
+
+        // Register all items with their registry keys
+        FOOD_PELLET = Registry.register(Registries.ITEM, foodPelletKey.getValue(), 
+                new Item(new Item.Settings().registryKey(foodPelletKey))
         );
 
-        TIMOTHY_HAY = register("timothy_hay",
-                new Item(new Item.Settings())
+        TIMOTHY_HAY = Registry.register(Registries.ITEM, timothyHayKey.getValue(),
+                new Item(new Item.Settings().registryKey(timothyHayKey))
         );
 
-        GUINEA_PELLET = register("guinea_pellet",
-                new GuineaPelletItem(new Item.Settings())
+        GUINEA_PELLET = Registry.register(Registries.ITEM, guineaPelletKey.getValue(),
+                new GuineaPelletItem(new Item.Settings().registryKey(guineaPelletKey))
         );
 
-        CARBONITE_INGOT = register("carbonite_ingot",
-                new Item(new Item.Settings())
+        CARBONITE_INGOT = Registry.register(Registries.ITEM, carboniteIngotKey.getValue(),
+                new Item(new Item.Settings().registryKey(carboniteIngotKey))
         );
 
-        CONDENSED_CARBONITE_INGOT = register("condensed_carbonite_ingot",
-                new Item(new Item.Settings())
+        CONDENSED_CARBONITE_INGOT = Registry.register(Registries.ITEM, condensedCarboniteIngotKey.getValue(),
+                new Item(new Item.Settings().registryKey(condensedCarboniteIngotKey))
         );
 
         // Register the spawn egg item now that the entity type is available
-        GUINEA_PIG_SPAWN_EGG = register("guinea_pig_spawn_egg",
+        GUINEA_PIG_SPAWN_EGG = Registry.register(Registries.ITEM, guineaPigSpawnEggKey.getValue(),
                 new SpawnEggItem(
                         GuineaBigs.GUINEA_PIG,
-                        new Item.Settings()
+                        new Item.Settings().registryKey(guineaPigSpawnEggKey)
                 )
         );
 
