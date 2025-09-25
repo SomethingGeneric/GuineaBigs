@@ -24,8 +24,13 @@ public class GuineaPigRenderer extends MobEntityRenderer<GuineaPigEntity, Guinea
         // Use simple default animation values
         state.limbAngle = entity.age * 0.6662F;
         state.limbAmplitude = (float) Math.min(entity.getVelocity().horizontalLength() * 4.0F, 1.0F);
-        state.yawDegrees = entity.getYaw();
-        state.pitchDegrees = entity.getPitch();
+        
+        // Calculate head rotation relative to body - this is the key fix
+        // The head should rotate relative to the body, not absolute rotation
+        float bodyYaw = entity.bodyYaw;
+        float headYaw = entity.getHeadYaw();
+        state.netHeadYaw = headYaw - bodyYaw; // Head rotation relative to body
+        state.headPitch = entity.getPitch(); // Up/down head movement
     }
 
     @Override
