@@ -13,50 +13,21 @@ import net.minecraft.util.Identifier;
 
 public class GuineaItems {
 
-    public static final Item FOOD_PELLET = register(
-            new Item(new Item.Settings()),
-            "food_pellet"
-    );
-
-    public static final Item TIMOTHY_HAY = register(
-            new Item(new Item.Settings()),
-            "timothy_hay"
-    );
-
-    public static final Item GUINEA_PELLET = register(
-            new GuineaPelletItem(new Item.Settings()),
-            "guinea_pellet"
-    );
-
-    public static final Item CARBONITE_INGOT = register(
-            new Item(new Item.Settings()),
-            "carbonite_ingot"
-    );
-
-    public static final Item CONDENSED_CARBONITE_INGOT = register(
-            new Item(new Item.Settings()),
-            "condensed_carbonite_ingot"
-    );
-
-    public static final Item GUINEA_PIG_SPAWN_EGG = register(
-            new SpawnEggItem(
-                    GuineaBigs.GUINEA_PIG,
-                    new Item.Settings()
-            ),
-            "guinea_pig_spawn_egg"
-    );
+    public static Item FOOD_PELLET;
+    public static Item TIMOTHY_HAY;
+    public static Item GUINEA_PELLET;
+    public static Item CARBONITE_INGOT;
+    public static Item CONDENSED_CARBONITE_INGOT;
+    public static Item GUINEA_PIG_SPAWN_EGG;
 
     // Creative tab menu definition
     public static final RegistryKey<ItemGroup> ITEM_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(GuineaBigs.MOD_ID, "item_group"));
-    public static final ItemGroup MY_ITEM_GROUP = FabricItemGroup.builder()
-            .icon(() -> new ItemStack(GuineaItems.TIMOTHY_HAY))
-            .displayName(Text.translatable("itemGroup.guineabigs"))
-            .build();
+    public static ItemGroup MY_ITEM_GROUP;
 
     // END STATIC FIELDS
 
     // START METHODS
-    public static Item register(Item item, String id) {
+    public static Item register(String id, Item item) {
         // Create the identifier for the item.
         Identifier itemID = Identifier.of(GuineaBigs.MOD_ID, id);
 
@@ -68,6 +39,41 @@ public class GuineaItems {
     }
 
     public static void initialize() {
+        // Register all items
+        FOOD_PELLET = register("food_pellet", 
+                new Item(new Item.Settings())
+        );
+
+        TIMOTHY_HAY = register("timothy_hay",
+                new Item(new Item.Settings())
+        );
+
+        GUINEA_PELLET = register("guinea_pellet",
+                new GuineaPelletItem(new Item.Settings())
+        );
+
+        CARBONITE_INGOT = register("carbonite_ingot",
+                new Item(new Item.Settings())
+        );
+
+        CONDENSED_CARBONITE_INGOT = register("condensed_carbonite_ingot",
+                new Item(new Item.Settings())
+        );
+
+        // Register the spawn egg item now that the entity type is available
+        GUINEA_PIG_SPAWN_EGG = register("guinea_pig_spawn_egg",
+                new SpawnEggItem(
+                        GuineaBigs.GUINEA_PIG,
+                        new Item.Settings()
+                )
+        );
+
+        // Create the item group after items are created
+        MY_ITEM_GROUP = FabricItemGroup.builder()
+                .icon(() -> new ItemStack(GuineaItems.TIMOTHY_HAY))
+                .displayName(Text.translatable("itemGroup.guineabigs"))
+                .build();
+
         // Register the group.
         Registry.register(Registries.ITEM_GROUP, ITEM_KEY, MY_ITEM_GROUP);
 
