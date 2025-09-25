@@ -23,7 +23,10 @@ public class GuineaItems {
             "timothy_hay"
     );
 
-    public static final Item GUINEA_PELLET = new GuineaPelletItem(new Item.Settings());
+    public static final Item GUINEA_PELLET = register(
+            new GuineaPelletItem(new Item.Settings()),
+            "guinea_pellet"
+    );
 
     public static final Item CARBONITE_INGOT = register(
             new Item(new Item.Settings()),
@@ -35,9 +38,12 @@ public class GuineaItems {
             "condensed_carbonite_ingot"
     );
 
-    public static final Item GUINEA_PIG_SPAWN_EGG = new SpawnEggItem(
-            GuineaBigs.GUINEA_PIG,
-            new Item.Settings()
+    public static final Item GUINEA_PIG_SPAWN_EGG = register(
+            new SpawnEggItem(
+                    GuineaBigs.GUINEA_PIG,
+                    new Item.Settings()
+            ),
+            "guinea_pig_spawn_egg"
     );
 
     // Creative tab menu definition
@@ -62,11 +68,6 @@ public class GuineaItems {
     }
 
     public static void initialize() {
-        // Spawn egg for Guinea Pig
-        Registry.register(Registries.ITEM, Identifier.of(GuineaBigs.MOD_ID, "guinea_pig_spawn_egg"), GUINEA_PIG_SPAWN_EGG);
-        // Guinea Pellet
-        Registry.register(Registries.ITEM, Identifier.of(GuineaBigs.MOD_ID, "guinea_pellet"), GUINEA_PELLET);
-
         // Register the group.
         Registry.register(Registries.ITEM_GROUP, ITEM_KEY, MY_ITEM_GROUP);
 
