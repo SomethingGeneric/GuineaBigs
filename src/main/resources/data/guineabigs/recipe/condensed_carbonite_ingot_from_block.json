@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "guineabigs:condensed_carbonite_block"
+    }
+  ],
+  "result": {
+    "item": "guineabigs:condensed_carbonite_ingot",
+    "count": 9
+  }
+}

@@ -18,6 +18,7 @@ public class GuineaBlocks {
     public static Block TIMOTHY_HAY_BALE;
     public static Block GUINEA_PELLET;
     public static Block GUINEA_TREADMILL_BLOCK;
+    public static Block CONDENSED_CARBONITE_BLOCK;
 
     // METHODS (vvv)
     public static Block register(Block block, String name, boolean shouldRegisterItem) {
@@ -40,6 +41,7 @@ public class GuineaBlocks {
         RegistryKey<Block> timothyHayBaleKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(GuineaBigs.MOD_ID, "timothy_hay_bale"));
         RegistryKey<Block> guineaPelletKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(GuineaBigs.MOD_ID, "guinea_pellet_block"));  
         RegistryKey<Block> guineaTreadmillKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(GuineaBigs.MOD_ID, "guinea_treadmill_block"));
+        RegistryKey<Block> condensedCarboniteBlockKey = RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_block"));
 
         // Register blocks
         TIMOTHY_HAY_BALE = register(
@@ -59,10 +61,17 @@ public class GuineaBlocks {
                 "guinea_treadmill_block",
                 true
         );
+        
+        CONDENSED_CARBONITE_BLOCK = register(
+                new Block(AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).registryKey(condensedCarboniteBlockKey)),
+                "condensed_carbonite_block",
+                true
+        );
 
         ItemGroupEvents.modifyEntriesEvent(GuineaItems.ITEM_KEY).register((itemGroup) -> {
             itemGroup.add(GuineaBlocks.TIMOTHY_HAY_BALE.asItem());
             itemGroup.add(GuineaBlocks.GUINEA_TREADMILL_BLOCK.asItem());
+            itemGroup.add(GuineaBlocks.CONDENSED_CARBONITE_BLOCK.asItem());
         });
     }
 

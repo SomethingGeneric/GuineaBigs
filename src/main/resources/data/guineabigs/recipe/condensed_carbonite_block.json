@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "guineabigs:condensed_carbonite_ingot"
+    }
+  },
+  "result": {
+    "item": "guineabigs:condensed_carbonite_block",
+    "count": 1
+  }
+}
