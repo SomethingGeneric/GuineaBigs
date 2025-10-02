@@ -9,6 +9,7 @@ public class GuineaPigRenderer extends MobEntityRenderer<GuineaPigEntity, Guinea
     
     public GuineaPigRenderer(EntityRendererFactory.Context context) {
         super(context, new GuineaModel(context.getPart(GuineaBigsClient.GUINEA_MODEL_LAYER)), 0.25f);
+        this.addFeature(new GuineaPigArmorFeatureRenderer(this));
     }
 
     @Override
@@ -31,6 +32,9 @@ public class GuineaPigRenderer extends MobEntityRenderer<GuineaPigEntity, Guinea
         float headYaw = entity.getHeadYaw();
         state.netHeadYaw = headYaw - bodyYaw; // Head rotation relative to body
         state.headPitch = entity.getPitch(); // Up/down head movement
+        
+        // Check if the guinea pig has armor
+        state.hasArmor = !entity.getBodyArmor().isEmpty();
     }
 
     @Override
