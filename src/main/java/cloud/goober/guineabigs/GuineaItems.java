@@ -20,6 +20,19 @@ public class GuineaItems {
     public static Item CARBONITE_INGOT;
     public static Item CONDENSED_CARBONITE_INGOT;
     public static Item GUINEA_PIG_SPAWN_EGG;
+    
+    // Condensed Carbonite Tools
+    public static Item CONDENSED_CARBONITE_SWORD;
+    public static Item CONDENSED_CARBONITE_PICKAXE;
+    public static Item CONDENSED_CARBONITE_AXE;
+    public static Item CONDENSED_CARBONITE_SHOVEL;
+    public static Item CONDENSED_CARBONITE_HOE;
+    
+    // Condensed Carbonite Armor
+    public static Item CONDENSED_CARBONITE_HELMET;
+    public static Item CONDENSED_CARBONITE_CHESTPLATE;
+    public static Item CONDENSED_CARBONITE_LEGGINGS;
+    public static Item CONDENSED_CARBONITE_BOOTS;
 
     // Creative tab menu definition
     public static final RegistryKey<ItemGroup> ITEM_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(GuineaBigs.MOD_ID, "item_group"));
@@ -65,6 +78,53 @@ public class GuineaItems {
         CONDENSED_CARBONITE_INGOT = Registry.register(Registries.ITEM, condensedCarboniteIngotKey.getValue(),
                 new Item(new Item.Settings().registryKey(condensedCarboniteIngotKey))
         );
+        
+        // Register Condensed Carbonite Tools
+        RegistryKey<Item> swordKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_sword"));
+        CONDENSED_CARBONITE_SWORD = Registry.register(Registries.ITEM, swordKey.getValue(),
+                new Item(new Item.Settings().sword(CondensedCarboniteToolMaterial.INSTANCE, 3, -2.4f).registryKey(swordKey))
+        );
+        
+        RegistryKey<Item> pickaxeKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_pickaxe"));
+        CONDENSED_CARBONITE_PICKAXE = Registry.register(Registries.ITEM, pickaxeKey.getValue(),
+                new Item(new Item.Settings().pickaxe(CondensedCarboniteToolMaterial.INSTANCE, 1, -2.8f).registryKey(pickaxeKey))
+        );
+        
+        RegistryKey<Item> axeKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_axe"));
+        CONDENSED_CARBONITE_AXE = Registry.register(Registries.ITEM, axeKey.getValue(),
+                new Item(new Item.Settings().axe(CondensedCarboniteToolMaterial.INSTANCE, 6, -3.1f).registryKey(axeKey))
+        );
+        
+        RegistryKey<Item> shovelKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_shovel"));
+        CONDENSED_CARBONITE_SHOVEL = Registry.register(Registries.ITEM, shovelKey.getValue(),
+                new Item(new Item.Settings().shovel(CondensedCarboniteToolMaterial.INSTANCE, 1.5f, -3.0f).registryKey(shovelKey))
+        );
+        
+        RegistryKey<Item> hoeKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_hoe"));
+        CONDENSED_CARBONITE_HOE = Registry.register(Registries.ITEM, hoeKey.getValue(),
+                new Item(new Item.Settings().hoe(CondensedCarboniteToolMaterial.INSTANCE, -2, -1.0f).registryKey(hoeKey))
+        );
+        
+        // Register Condensed Carbonite Armor
+        RegistryKey<Item> helmetKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_helmet"));
+        CONDENSED_CARBONITE_HELMET = Registry.register(Registries.ITEM, helmetKey.getValue(),
+                new Item(new Item.Settings().armor(CondensedCarboniteArmorMaterial.INSTANCE, net.minecraft.item.equipment.EquipmentType.HELMET).registryKey(helmetKey))
+        );
+        
+        RegistryKey<Item> chestplateKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_chestplate"));
+        CONDENSED_CARBONITE_CHESTPLATE = Registry.register(Registries.ITEM, chestplateKey.getValue(),
+                new Item(new Item.Settings().armor(CondensedCarboniteArmorMaterial.INSTANCE, net.minecraft.item.equipment.EquipmentType.CHESTPLATE).registryKey(chestplateKey))
+        );
+        
+        RegistryKey<Item> leggingsKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_leggings"));
+        CONDENSED_CARBONITE_LEGGINGS = Registry.register(Registries.ITEM, leggingsKey.getValue(),
+                new Item(new Item.Settings().armor(CondensedCarboniteArmorMaterial.INSTANCE, net.minecraft.item.equipment.EquipmentType.LEGGINGS).registryKey(leggingsKey))
+        );
+        
+        RegistryKey<Item> bootsKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "condensed_carbonite_boots"));
+        CONDENSED_CARBONITE_BOOTS = Registry.register(Registries.ITEM, bootsKey.getValue(),
+                new Item(new Item.Settings().armor(CondensedCarboniteArmorMaterial.INSTANCE, net.minecraft.item.equipment.EquipmentType.BOOTS).registryKey(bootsKey))
+        );
 
         // Register the spawn egg item now that the entity type is available
         GUINEA_PIG_SPAWN_EGG = Registry.register(Registries.ITEM, guineaPigSpawnEggKey.getValue(),
@@ -91,6 +151,17 @@ public class GuineaItems {
             itemGroup.add(GuineaItems.GUINEA_PIG_SPAWN_EGG);
             itemGroup.add(GuineaItems.CARBONITE_INGOT);
             itemGroup.add(GuineaItems.CONDENSED_CARBONITE_INGOT);
+            // Condensed Carbonite Tools
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_SWORD);
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_PICKAXE);
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_AXE);
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_SHOVEL);
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_HOE);
+            // Condensed Carbonite Armor
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_HELMET);
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_CHESTPLATE);
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_LEGGINGS);
+            itemGroup.add(GuineaItems.CONDENSED_CARBONITE_BOOTS);
             // blocks are added automagically
         });
 
