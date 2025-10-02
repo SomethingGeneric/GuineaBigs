@@ -20,5 +20,11 @@
   "item.guineabigs.condensed_carbonite_chestplate": "Condensed Carbonite Chestplate",
   "item.guineabigs.condensed_carbonite_leggings": "Condensed Carbonite Leggings",
   "item.guineabigs.condensed_carbonite_boots": "Condensed Carbonite Boots",
-  "item.guineabigs.guinea_pig_armor": "Guinea Pig Armor"
+  "item.guineabigs.guinea_pig_armor": "Guinea Pig Armor",
+  "item.guineabigs.tiny_car": "Tiny Car",
+  "item.guineabigs.tiny_tank": "Tiny Tank",
+  "item.guineabigs.tiny_helicopter": "Tiny Helicopter",
+  "entity.guineabigs.tiny_car": "Tiny Car",
+  "entity.guineabigs.tiny_tank": "Tiny Tank",
+  "entity.guineabigs.tiny_helicopter": "Tiny Helicopter"
 }
