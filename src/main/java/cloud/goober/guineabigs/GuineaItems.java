@@ -41,6 +41,11 @@ public class GuineaItems {
     // Guinea Pig Armor
     public static Item GUINEA_PIG_ARMOR;
 
+    // Tiny vehicles
+    public static Item TINY_CAR;
+    public static Item TINY_TANK;
+    public static Item TINY_HELICOPTER;
+
     // Creative tab menu definition
     public static final RegistryKey<ItemGroup> ITEM_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(GuineaBigs.MOD_ID, "item_group"));
     public static ItemGroup MY_ITEM_GROUP;
@@ -153,6 +158,22 @@ public class GuineaItems {
                 )
         );
 
+        // Register tiny vehicle items
+        RegistryKey<Item> tinyCarKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "tiny_car"));
+        TINY_CAR = Registry.register(Registries.ITEM, tinyCarKey.getValue(),
+                new Item(new Item.Settings().maxCount(1).registryKey(tinyCarKey))
+        );
+
+        RegistryKey<Item> tinyTankKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "tiny_tank"));
+        TINY_TANK = Registry.register(Registries.ITEM, tinyTankKey.getValue(),
+                new Item(new Item.Settings().maxCount(1).registryKey(tinyTankKey))
+        );
+
+        RegistryKey<Item> tinyHelicopterKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "tiny_helicopter"));
+        TINY_HELICOPTER = Registry.register(Registries.ITEM, tinyHelicopterKey.getValue(),
+                new Item(new Item.Settings().maxCount(1).registryKey(tinyHelicopterKey))
+        );
+
         // Create the item group after items are created
         MY_ITEM_GROUP = FabricItemGroup.builder()
                 .icon(() -> new ItemStack(GuineaItems.TIMOTHY_HAY))
@@ -183,6 +204,10 @@ public class GuineaItems {
             itemGroup.add(GuineaItems.CONDENSED_CARBONITE_BOOTS);
             // Guinea Pig Armor
             itemGroup.add(GuineaItems.GUINEA_PIG_ARMOR);
+            // Tiny vehicles
+            itemGroup.add(GuineaItems.TINY_CAR);
+            itemGroup.add(GuineaItems.TINY_TANK);
+            itemGroup.add(GuineaItems.TINY_HELICOPTER);
             // blocks are added automagically
         });
 

@@ -38,6 +38,34 @@ public class GuineaBigs implements ModInitializer {
 				.build(GUINEA_PIG_KEY)
 	);
 
+	// Tiny vehicle entity types
+	public static final RegistryKey<EntityType<?>> TINY_CAR_KEY = RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(MOD_ID, "tiny_car"));
+	public static final EntityType<TinyCarEntity> TINY_CAR = Registry.register(
+		Registries.ENTITY_TYPE,
+		TINY_CAR_KEY,
+		FabricEntityTypeBuilder.create(SpawnGroup.MISC, TinyCarEntity::new)
+				.dimensions(EntityDimensions.fixed(0.8f, 0.5f))
+				.build(TINY_CAR_KEY)
+	);
+
+	public static final RegistryKey<EntityType<?>> TINY_TANK_KEY = RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(MOD_ID, "tiny_tank"));
+	public static final EntityType<TinyTankEntity> TINY_TANK = Registry.register(
+		Registries.ENTITY_TYPE,
+		TINY_TANK_KEY,
+		FabricEntityTypeBuilder.create(SpawnGroup.MISC, TinyTankEntity::new)
+				.dimensions(EntityDimensions.fixed(0.8f, 0.6f))
+				.build(TINY_TANK_KEY)
+	);
+
+	public static final RegistryKey<EntityType<?>> TINY_HELICOPTER_KEY = RegistryKey.of(Registries.ENTITY_TYPE.getKey(), Identifier.of(MOD_ID, "tiny_helicopter"));
+	public static final EntityType<TinyHelicopterEntity> TINY_HELICOPTER = Registry.register(
+		Registries.ENTITY_TYPE,
+		TINY_HELICOPTER_KEY,
+		FabricEntityTypeBuilder.create(SpawnGroup.MISC, TinyHelicopterEntity::new)
+				.dimensions(EntityDimensions.fixed(0.9f, 0.7f))
+				.build(TINY_HELICOPTER_KEY)
+	);
+
 	public static final ArrayList<RegistryKey<Biome>> VALID_BIOMES = new ArrayList<>(Arrays.asList(
 			BiomeKeys.PLAINS,
 			BiomeKeys.SUNFLOWER_PLAINS,
