@@ -2,27 +2,34 @@ package cloud.goober.guineabigs;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FurnaceBlock;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-
-import java.util.List;
 
 public class GuineaTreadmillBlock extends Block {
 
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
+    public static final IntProperty WATER_LEVEL = IntProperty.of("water_level", 0, 10);
+    public static final IntProperty HAY_LEVEL = IntProperty.of("hay_level", 0, 10);
 
     public GuineaTreadmillBlock(Settings settings) {
         super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(POWERED, false));
+        setDefaultState(getStateManager().getDefaultState()
+            .with(POWERED, false)
+            .with(WATER_LEVEL, 10)
+            .with(HAY_LEVEL, 10));
     }
 
     @Override
@@ -31,9 +38,17 @@ public class GuineaTreadmillBlock extends Block {
 
         if (!world.isClient) {
             if (entity.getType() == GuineaBigs.GUINEA_PIG) {
-                if (!state.get(POWERED)) {
+                int waterLevel = state.get(WATER_LEVEL);
+                int hayLevel = state.get(HAY_LEVEL);
+                
+                if (!state.get(POWERED) && waterLevel > 0 && hayLevel > 0) {
                     GuineaBigs.LOGGER.info("Attempting to power block at " + pos.toString());
-                    world.setBlockState(pos, state.with(POWERED, true), 3);
+                    // Consume resources
+                    BlockState newState = state
+                        .with(POWERED, true)
+                        .with(WATER_LEVEL, waterLevel - 1)
+                        .with(HAY_LEVEL, hayLevel - 1);
+                    world.setBlockState(pos, newState, 3);
                     world.updateNeighbors(pos, this);  // Update redstone neighbors
 
                     world.scheduleBlockTick(pos, this, 45);
@@ -78,6 +93,37 @@ public class GuineaTreadmillBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(POWERED);
+        builder.add(POWERED, WATER_LEVEL, HAY_LEVEL);
+    }
+
+    @Override
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (!world.isClient) {
+            ItemStack heldItem = player.getStackInHand(player.getActiveHand());
+            
+            // Check for water bucket
+            if (heldItem.getItem() == Items.WATER_BUCKET) {
+                int currentWater = state.get(WATER_LEVEL);
+                if (currentWater < 10) {
+                    world.setBlockState(pos, state.with(WATER_LEVEL, 10), 3);
+                    if (!player.getAbilities().creativeMode) {
+                        player.setStackInHand(player.getActiveHand(), new ItemStack(Items.BUCKET));
+                    }
+                    return ActionResult.SUCCESS;
+                }
+            }
+            // Check for timothy hay
+            else if (heldItem.getItem() == GuineaItems.TIMOTHY_HAY) {
+                int currentHay = state.get(HAY_LEVEL);
+                if (currentHay < 10) {
+                    world.setBlockState(pos, state.with(HAY_LEVEL, 10), 3);
+                    if (!player.getAbilities().creativeMode) {
+                        heldItem.decrement(1);
+                    }
+                    return ActionResult.SUCCESS;
+                }
+            }
+        }
+        return ActionResult.PASS;
     }
 }
