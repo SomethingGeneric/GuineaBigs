@@ -9,5 +9,15 @@
   "entity.guineabigs.guineapig": "Guinea Pig",
   "item.guineabigs.carbonite_ingot": "Carbonite Ingot",
   "item.guineabigs.condensed_carbonite_ingot": "Condensed Carbonite Ingot",
-  "block.guineabigs.guinea_treadmill_block": "Guinea Pig Treadmill"
+  "block.guineabigs.guinea_treadmill_block": "Guinea Pig Treadmill",
+  "block.guineabigs.condensed_carbonite_block": "Condensed Carbonite Block",
+  "item.guineabigs.condensed_carbonite_sword": "Condensed Carbonite Sword",
+  "item.guineabigs.condensed_carbonite_pickaxe": "Condensed Carbonite Pickaxe",
+  "item.guineabigs.condensed_carbonite_axe": "Condensed Carbonite Axe",
+  "item.guineabigs.condensed_carbonite_shovel": "Condensed Carbonite Shovel",
+  "item.guineabigs.condensed_carbonite_hoe": "Condensed Carbonite Hoe",
+  "item.guineabigs.condensed_carbonite_helmet": "Condensed Carbonite Helmet",
+  "item.guineabigs.condensed_carbonite_chestplate": "Condensed Carbonite Chestplate",
+  "item.guineabigs.condensed_carbonite_leggings": "Condensed Carbonite Leggings",
+  "item.guineabigs.condensed_carbonite_boots": "Condensed Carbonite Boots"
 }
