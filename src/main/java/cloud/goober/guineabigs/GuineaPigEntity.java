@@ -1,14 +1,18 @@
 package cloud.goober.guineabigs;
 
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.minecraft.util.math.random.Random;
@@ -19,11 +23,6 @@ public class GuineaPigEntity extends AnimalEntity {
     public GuineaPigEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
         this.textureVariant = Random.create().nextInt(2); // Randomly select a texture variant (0, 1)
-    }
-
-    @Override
-    public boolean isBreedingItem(ItemStack stack) {
-        return stack.getItem() == GuineaItems.TIMOTHY_HAY;
     }
 
     @Override
@@ -61,5 +60,40 @@ public class GuineaPigEntity extends AnimalEntity {
     // Add a method to get the texture path based on the variant
     public Identifier getTexture() {
         return Identifier.of("guineabigs", "textures/entity/guinea_pig_" + textureVariant + ".png");
+    }
+    
+    @Override
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+        ItemStack itemStack = player.getStackInHand(hand);
+        
+        // Check if the player is holding guinea pig armor
+        if (itemStack.getItem() == GuineaItems.GUINEA_PIG_ARMOR) {
+            // Check if the guinea pig doesn't already have armor
+            ItemStack bodyArmor = this.getEquippedStack(EquipmentSlot.BODY);
+            if (bodyArmor.isEmpty()) {
+                // Equip the armor
+                this.equipStack(EquipmentSlot.BODY, itemStack.copy());
+                itemStack.decrement(1);
+                return ActionResult.SUCCESS;
+            }
+        }
+        
+        // If the player is sneaking and not holding anything, remove armor
+        if (player.isSneaking() && itemStack.isEmpty()) {
+            ItemStack bodyArmor = this.getEquippedStack(EquipmentSlot.BODY);
+            if (!bodyArmor.isEmpty()) {
+                // Give the armor back to the player
+                this.equipStack(EquipmentSlot.BODY, ItemStack.EMPTY);
+                player.giveItemStack(bodyArmor);
+                return ActionResult.SUCCESS;
+            }
+        }
+        
+        return super.interactMob(player, hand);
+    }
+    
+    @Override
+    public boolean isBreedingItem(ItemStack stack) {
+        return stack.getItem() == GuineaItems.TIMOTHY_HAY;
     }
 }
