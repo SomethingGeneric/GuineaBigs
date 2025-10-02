@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 public class GuineaPigRenderer extends MobEntityRenderer<GuineaPigEntity, GuineaPigRenderState, GuineaModel> {
     
     public GuineaPigRenderer(EntityRendererFactory.Context context) {
-        super(context, new GuineaModel(context.getPart(GuineaBigsClient.GUINEA_MODEL_LAYER)), 0.125f);
+        super(context, new GuineaModel(context.getPart(GuineaBigsClient.GUINEA_MODEL_LAYER)), 0.25f);
     }
 
     @Override
