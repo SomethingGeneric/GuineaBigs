@@ -18,7 +18,7 @@ public class GuineaPigEntity extends AnimalEntity {
 
     public GuineaPigEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
-        this.textureVariant = Random.create().nextInt(3); // Randomly select a texture variant (0, 1, 2)
+        this.textureVariant = Random.create().nextInt(2); // Randomly select a texture variant (0, 1)
     }
 
     @Override
@@ -46,7 +46,7 @@ public class GuineaPigEntity extends AnimalEntity {
     @Override
     public GuineaPigEntity createChild(ServerWorld world, PassiveEntity entity) {
         GuineaPigEntity child = GuineaBigs.GUINEA_PIG.create(world, SpawnReason.BREEDING);
-        child.setTextureVariant(Random.create().nextInt(3)); // Randomly set the child’s texture variant
+        child.setTextureVariant(Random.create().nextInt(2)); // Randomly set the child’s texture variant
         return child;
     }
 
