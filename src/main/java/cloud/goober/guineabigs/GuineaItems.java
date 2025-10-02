@@ -4,11 +4,15 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.EquippableComponent;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -33,6 +37,9 @@ public class GuineaItems {
     public static Item CONDENSED_CARBONITE_CHESTPLATE;
     public static Item CONDENSED_CARBONITE_LEGGINGS;
     public static Item CONDENSED_CARBONITE_BOOTS;
+    
+    // Guinea Pig Armor
+    public static Item GUINEA_PIG_ARMOR;
 
     // Creative tab menu definition
     public static final RegistryKey<ItemGroup> ITEM_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(GuineaBigs.MOD_ID, "item_group"));
@@ -125,6 +132,18 @@ public class GuineaItems {
         CONDENSED_CARBONITE_BOOTS = Registry.register(Registries.ITEM, bootsKey.getValue(),
                 new Item(new Item.Settings().armor(CondensedCarboniteArmorMaterial.INSTANCE, net.minecraft.item.equipment.EquipmentType.BOOTS).registryKey(bootsKey))
         );
+        
+        // Register Guinea Pig Armor
+        RegistryKey<Item> guineaPigArmorKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(GuineaBigs.MOD_ID, "guinea_pig_armor"));
+        GUINEA_PIG_ARMOR = Registry.register(Registries.ITEM, guineaPigArmorKey.getValue(),
+                new Item(new Item.Settings()
+                        .maxCount(1)
+                        .component(DataComponentTypes.EQUIPPABLE, 
+                                EquippableComponent.builder(EquipmentSlot.BODY)
+                                        .equipSound(SoundEvents.ITEM_ARMOR_EQUIP_WOLF)
+                                        .build())
+                        .registryKey(guineaPigArmorKey))
+        );
 
         // Register the spawn egg item now that the entity type is available
         GUINEA_PIG_SPAWN_EGG = Registry.register(Registries.ITEM, guineaPigSpawnEggKey.getValue(),
@@ -162,6 +181,8 @@ public class GuineaItems {
             itemGroup.add(GuineaItems.CONDENSED_CARBONITE_CHESTPLATE);
             itemGroup.add(GuineaItems.CONDENSED_CARBONITE_LEGGINGS);
             itemGroup.add(GuineaItems.CONDENSED_CARBONITE_BOOTS);
+            // Guinea Pig Armor
+            itemGroup.add(GuineaItems.GUINEA_PIG_ARMOR);
             // blocks are added automagically
         });
 
